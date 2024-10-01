@@ -25,7 +25,8 @@ MyPawn >> id [
 ]
 
 { #category : 'initialize' }
-MyPawn >> initializePawn [
+MyPawn >> initialize [
+
 	firstMove := true
 ]
 
@@ -39,8 +40,8 @@ MyPawn >> renderPieceOn: aSquare [
 MyPawn >> targetSquaresLegal: aBoolean [
 
 	^ (self isWhite
-		   ifTrue: [ { square up } ]
-		   ifFalse: [ { square down } ]) select: [ :s |
+		   ifTrue: [ firstMove ifTrue: [{ square up. square up up }] ifFalse: [{ square up }] ]
+		   ifFalse: [ firstMove ifTrue: [{ square down. square down down }] ifFalse: [{ square down }] ]) select: [ :s |
 		  s notNil and: [
 			  s hasPiece not or: [ s contents color ~= color ] ] ]
 ]
