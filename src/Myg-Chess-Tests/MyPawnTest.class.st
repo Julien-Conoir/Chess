@@ -6,6 +6,19 @@ Class {
 }
 
 { #category : 'tests' }
+MyPawnTest >> testBlackPawnTargetSquaresLegalHas2ChoicesWhenFirstMove [
+	| pawn targetSquares board |
+	board := MyChessBoard empty.
+	pawn := MyPawn new.
+	pawn color: Color black.
+	board at: 'c7' put: pawn .
+	targetSquares := pawn targetSquaresLegal: false.
+	self assert: targetSquares size equals: 2.
+	self assert: (targetSquares includes: (board at: 'c6')).
+	self assert: (targetSquares includes: (board at: 'c5')).
+]
+
+{ #category : 'tests' }
 MyPawnTest >> testInitializeWithCorrectFirstMove [
 	
 	| pawn |
@@ -15,14 +28,14 @@ MyPawnTest >> testInitializeWithCorrectFirstMove [
 ]
 
 { #category : 'tests' }
-MyPawnTest >> testWhitePawnFirstMove [
-	| pawn targetSquares startSquare |
+MyPawnTest >> testWhitePawnTargetSquaresLegalHas2ChoicesWhenFirstMove [
+	| pawn targetSquares board |
+	board := MyChessBoard empty.
 	pawn := MyPawn new.
 	pawn color: Color white.
-	startSquare := MyChessSquare new.
-	startSquare color: Color white.
-	startSquare name: '4'.
-	pawn square: startSquare.
+	board at: 'b2' put: pawn .
 	targetSquares := pawn targetSquaresLegal: true.
 	self assert: targetSquares size equals: 2.
+	self assert: (targetSquares includes: (board at: 'b3')).
+	self assert: (targetSquares includes: (board at: 'b4')).
 ]
