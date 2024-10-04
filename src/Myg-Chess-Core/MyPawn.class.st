@@ -30,6 +30,13 @@ MyPawn >> initialize [
 	firstMove := true
 ]
 
+{ #category : 'path commands' }
+MyPawn >> moveTo: aSquare [
+
+	super moveTo: aSquare.
+	self firstMove ifTrue: [self firstMove: false]
+]
+
 { #category : 'rendering' }
 MyPawn >> renderPieceOn: aSquare [ 
 	
