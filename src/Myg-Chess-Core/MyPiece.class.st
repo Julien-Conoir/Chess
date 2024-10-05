@@ -171,6 +171,11 @@ MyPiece >> moveTo: aSquare [
 	aSquare contents: self
 ]
 
+{ #category : 'as yet unclassified' }
+MyPiece >> renderPieceOn: aSquare [ 
+	^ self subclassResponsibility
+]
+
 { #category : 'rendering' }
 MyPiece >> rightFile [
 

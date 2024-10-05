@@ -5,134 +5,134 @@ Class {
 	#package : 'Myg-Chess-Tests'
 }
 
-{ #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderBishopWithBlackColor [
+{ #category : 'tests' }
+MyChessSquareTests >> testRenderBishopOnBlackSquare [
 
 	| piece square |
 	piece := MyBishop new color: Color black; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderBishop: piece) equals: 'V'.
-	square color: Color black.
+	square := MyBlackChessSquare new.
 	self assert: (square renderBishop: piece) equals: 'v'.
-]
-
-{ #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderBishopWithWhiteColor [
-
-	| piece square |
-	piece := MyBishop new color: Color white; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderBishop: piece) equals: 'B'.
-	square color: Color black.
+	piece color: Color white.
 	self assert: (square renderBishop: piece) equals: 'b'.
 ]
 
-{ #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderKingkWithBlackColor [
+{ #category : 'tests' }
+MyChessSquareTests >> testRenderBishopOnWhiteSquare [
 
 	| piece square |
-	piece := MyKing new color: Color black; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderKing: piece) equals: 'L'.
-	square color: Color black.
-	self assert: (square renderKing: piece) equals: 'l'.
+	piece := MyBishop new color: Color black; yourself.
+	square := MyWhiteChessSquare new.
+	self assert: (square renderBishop: piece) equals: 'V'.
+	piece color: Color white.
+	self assert: (square renderBishop: piece) equals: 'B'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderKingkWithWhiteColor [
+MyChessSquareTests >> testRenderKingOnBlackSquare [
 
 	| piece square |
-	piece := MyKing new color: Color white; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderKing: piece) equals: 'K'.
-	square color: Color black.
+	piece := MyKing new color: Color black; yourself.
+	square := MyBlackChessSquare new.
+	self assert: (square renderKing: piece) equals: 'l'.
+	piece color: Color white.
 	self assert: (square renderKing: piece) equals: 'k'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderKnightkWithBlackColor [
+MyChessSquareTests >> testRenderKingOnWhiteSquare [
 
 	| piece square |
-	piece := MyKnight new color: Color black; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderKnight: piece) equals: 'M'.
-	square color: Color black.
-	self assert: (square renderKnight: piece) equals: 'm'.
+	piece := MyKing new color: Color black; yourself.
+	square := MyWhiteChessSquare new.
+	self assert: (square renderKing: piece) equals: 'L'.
+	piece color: Color white.
+	self assert: (square renderKing: piece) equals: 'K'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderKnightkWithWhiteColor [
+MyChessSquareTests >> testRenderKnightOnBlackSquare [
 
 	| piece square |
-	piece := MyKnight new color: Color white; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderKnight: piece) equals: 'N'.
-	square color: Color black.
+	piece := MyKnight new color: Color black; yourself.
+	square := MyBlackChessSquare new.
+	self assert: (square renderKnight: piece) equals: 'm'.
+	piece color: Color white.
 	self assert: (square renderKnight: piece) equals: 'n'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderPawnWithBlackColor [
+MyChessSquareTests >> testRenderKnightOnWhiteSquare [
 
 	| piece square |
-	piece := MyPawn new color: Color black; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderPawn: piece) equals: 'O'.
-	square color: Color black.
-	self assert: (square renderPawn: piece) equals: 'o'.
+	piece := MyKnight new color: Color black; yourself.
+	square := MyWhiteChessSquare new.
+	self assert: (square renderKnight: piece) equals: 'M'.
+	piece color: Color white.
+	self assert: (square renderKnight: piece) equals: 'N'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderPawnWithWhiteColor [
+MyChessSquareTests >> testRenderPawnOnBlackSquare [
 
 	| piece square |
-	piece := MyPawn new color: Color white; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderPawn: piece) equals: 'P'.
-	square color: Color black.
+	piece := MyPawn new color: Color black; yourself.
+	square := MyBlackChessSquare new.
+	self assert: (square renderPawn: piece) equals: 'o'.
+	piece color: Color white.
 	self assert: (square renderPawn: piece) equals: 'p'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderQueenkWithBlackColor [
+MyChessSquareTests >> testRenderPawnOnWhiteSquare [
 
 	| piece square |
-	piece := MyQueen new color: Color black; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderQueen: piece) equals: 'W'.
-	square color: Color black.
-	self assert: (square renderQueen: piece) equals: 'w'.
+	piece := MyPawn new color: Color black; yourself.
+	square := MyWhiteChessSquare new.
+	self assert: (square renderPawn: piece) equals: 'O'.
+	piece color: Color white.
+	self assert: (square renderPawn: piece) equals: 'P'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderQueenkWithWhiteColor [
+MyChessSquareTests >> testRenderQueenOnBlackSquare [
 
 	| piece square |
-	piece := MyQueen new color: Color white; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderQueen: piece) equals: 'Q'.
-	square color: Color black.
+	piece := MyQueen new color: Color black; yourself.
+	square := MyBlackChessSquare new.
+	self assert: (square renderQueen: piece) equals: 'w'.
+	piece color: Color white.
 	self assert: (square renderQueen: piece) equals: 'q'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderRookWithBlackColor [
+MyChessSquareTests >> testRenderQueenOnWhiteSquare [
 
 	| piece square |
-	piece := MyRook new color: Color black; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderRook: piece) equals: 'T'.
-	square color: Color black.
-	self assert: (square renderRook: piece) equals: 't'.
+	piece := MyQueen new color: Color black; yourself.
+	square := MyWhiteChessSquare new.
+	self assert: (square renderQueen: piece) equals: 'W'.
+	piece color: Color white.
+	self assert: (square renderQueen: piece) equals: 'Q'.
 ]
 
 { #category : 'as yet unclassified' }
-MyChessSquareTests >> testRenderRookWithWhiteColor [
+MyChessSquareTests >> testRenderRookOnBlackSquare [
 
 	| piece square |
-	piece := MyRook new color: Color white; yourself.
-	square := MyChessSquare color: Color white.
-	self assert: (square renderRook: piece) equals: 'R'.
-	square color: Color black.
+	piece := MyRook new color: Color black; yourself.
+	square := MyBlackChessSquare new.
+	self assert: (square renderRook: piece) equals: 't'.
+	piece color: Color white.
 	self assert: (square renderRook: piece) equals: 'r'.
+]
+
+{ #category : 'as yet unclassified' }
+MyChessSquareTests >> testRenderRookOnWhiteSquare [
+
+	| piece square |
+	piece := MyRook new color: Color black; yourself.
+	square := MyWhiteChessSquare new.
+	self assert: (square renderRook: piece) equals: 'T'.
+	piece color: Color white.
+	self assert: (square renderRook: piece) equals: 'R'.
 ]
