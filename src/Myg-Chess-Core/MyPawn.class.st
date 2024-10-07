@@ -30,11 +30,50 @@ MyPawn >> initialize [
 	firstMove := true
 ]
 
+{ #category : 'as yet unclassified' }
+MyPawn >> methodSelectorAndArgumentNames [
+	| firstSquare secondSquare |
+	^ self isWhite
+	ifTrue: [
+					   firstSquare := square up.
+					   secondSquare := square up up.
+					   (firstSquare notNil and: [ firstSquare hasPiece not ])
+						   ifTrue: [ { firstSquare. secondSquare } ]
+						   ifFalse: [ { firstSquare } ] ]
+]
+
 { #category : 'path commands' }
 MyPawn >> moveTo: aSquare [
 
 	super moveTo: aSquare.
 	self firstMove ifTrue: [self firstMove: false]
+]
+
+{ #category : 'as yet unclassified' }
+MyPawn >> previewOfTargetSquaresLegal [
+
+	^ (self isWhite
+		  ifTrue: [ {square up} ]
+		  ifFalse: [ {square down} ])
+]
+
+{ #category : 'as yet unclassified' }
+MyPawn >> previewOfTargetSquaresLegalFirstMove [
+
+	| firstSquare secondSquare |
+	self isWhite
+		ifTrue: [
+			firstSquare := square up.
+			secondSquare := square up up ]
+		ifFalse: [
+			firstSquare := square down.
+			secondSquare := square down down ].
+	^ (firstSquare notNil and: [ firstSquare hasPiece not ])
+		  ifTrue: [
+			  {
+				  firstSquare.
+				  secondSquare } ]
+		  ifFalse: [ { } ]
 ]
 
 { #category : 'rendering' }
@@ -46,25 +85,8 @@ MyPawn >> renderPieceOn: aSquare [
 { #category : 'rendering' }
 MyPawn >> targetSquaresLegal: aBoolean [
 
-	^ (self isWhite
-		   ifTrue: [
-			   firstMove
-				   ifTrue: [
-					   {
-						   square up.
-						   square up up } ]
-				   ifFalse: [ { square up } ] ]
-		   ifFalse: [
-			   firstMove
-				   ifTrue: [
-					   {
-						   square down.
-						   square down down } ]
-				   ifFalse: [ { square down } ] ]) select: [ :s |
-		  s notNil and: (s hasPiece not and: (firstMove
-					    ifTrue: [
-						    self isWhite
-							    ifTrue: [ s down hasPiece not ]
-							    ifFalse: [ s up hasPiece not ] ]
-					    ifFalse: [ true ])) ]
+	^ (self firstMove
+				   ifTrue: [self previewOfTargetSquaresLegalFirstMove ]
+				   ifFalse: [self previewOfTargetSquaresLegal ] ) select: [ :s |
+		  s notNil and: [ s hasPiece not ] ]
 ]
