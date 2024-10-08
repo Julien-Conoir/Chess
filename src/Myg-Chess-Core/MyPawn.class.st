@@ -30,18 +30,6 @@ MyPawn >> initialize [
 	firstMove := true
 ]
 
-{ #category : 'as yet unclassified' }
-MyPawn >> methodSelectorAndArgumentNames [
-	| firstSquare secondSquare |
-	^ self isWhite
-	ifTrue: [
-					   firstSquare := square up.
-					   secondSquare := square up up.
-					   (firstSquare notNil and: [ firstSquare hasPiece not ])
-						   ifTrue: [ { firstSquare. secondSquare } ]
-						   ifFalse: [ { firstSquare } ] ]
-]
-
 { #category : 'path commands' }
 MyPawn >> moveTo: aSquare [
 

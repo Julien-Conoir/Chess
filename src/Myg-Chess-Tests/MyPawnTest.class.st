@@ -6,6 +6,41 @@ Class {
 }
 
 { #category : 'tests' }
+MyPawnTest >> testBlackPawnDoesNotHavePermissionToMoveOverPieceWhenFirstMove [
+
+	| pawnBlack piece targetSquaresBlack board |
+	board := MyChessBoard empty.
+	pawnBlack := MyPawn new.
+	pawnBlack color: Color black.
+	piece := MyBishop new.
+	piece color: Color white.
+
+	board at: 'c7' put: pawnBlack.
+	board at: 'c6' put: piece .
+
+	targetSquaresBlack := pawnBlack targetSquaresLegal: false.
+	self assert: targetSquaresBlack size equals: 0.
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testBlackPawnHas1ChoiceWhenFirstMoveAndPieceIsTwoSquaresForward [
+
+	| pawnBlack piece targetSquaresBlack board |
+	board := MyChessBoard empty.
+	pawnBlack := MyPawn new.
+	pawnBlack color: Color black.
+	piece := MyRook new.
+	piece color: Color white.
+
+	board at: 'c7' put: pawnBlack.
+	board at: 'c5' put: piece.
+
+	targetSquaresBlack := pawnBlack targetSquaresLegal: false.
+	self assert: targetSquaresBlack size equals: 1.
+	self assert: (targetSquaresBlack includes: (board at: 'c6'))
+]
+
+{ #category : 'tests' }
 MyPawnTest >> testBlackPawnTargetSquaresLegalHas1ChoiceWhenNotFirstMove [
 	| pawn targetSquares board |
 	board := MyChessBoard empty.
@@ -50,6 +85,72 @@ MyPawnTest >> testMoveToChangeTheValueOfFirstMoveAttributeAfterActualFirstMove [
 	pawn moveTo: 'c6'.
 	self assert: pawn firstMove not.
 	
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testPawnDoesNotHavePermissionToTakePieceForward [
+
+	| pawnBlack pawnWhite targetSquaresBlack targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnBlack := MyPawn new.
+	pawnBlack color: Color black.
+	pawnBlack firstMove: false.
+	pawnWhite := MyPawn new.
+	pawnWhite color: Color white.
+	pawnWhite firstMove: false.
+	
+	board at: 'c5' put: pawnBlack .
+	board at: 'c4' put: pawnWhite .
+	
+	targetSquaresBlack := pawnBlack targetSquaresLegal: false.
+	self assert: targetSquaresBlack size equals: 0.
+	
+	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 0.
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testPawnId [
+
+	| pawn |
+	pawn := MyPawn new.
+	self assert: pawn id equals: 'P'
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testWhitePawnDoesNotHavePermissionToMoveOverPieceWhenFirstMove [
+
+	| pawnWhite piece targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnWhite := MyPawn new.
+	pawnWhite color: Color white.
+	piece := MyRook new.
+	piece color: Color white.
+
+	board at: 'c2' put: pawnWhite.
+	board at: 'c3' put: piece.
+
+	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 0
+	
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testWhitePawnHas1ChoiceWhenFirstMoveAndPieceIsTwoSquaresForward [
+
+	| pawnWhite piece targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnWhite := MyPawn new.
+	pawnWhite color: Color white.
+	piece := MyRook new.
+	piece color: Color black.
+
+	board at: 'c2' put: pawnWhite.
+	board at: 'c4' put: piece.
+
+	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 1.
+	self assert: (targetSquaresWhite includes: (board at: 'c3'))
 ]
 
 { #category : 'tests' }
