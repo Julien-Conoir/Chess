@@ -48,26 +48,27 @@ MyPawn >> previewOfTargetSquaresLegal [
 { #category : 'as yet unclassified' }
 MyPawn >> previewOfTargetSquaresLegalFirstMove [
 
-	| firstSquare secondSquare |
-	self isWhite
-		ifTrue: [
-			firstSquare := square up.
-			secondSquare := square up up ]
-		ifFalse: [
-			firstSquare := square down.
-			secondSquare := square down down ].
-	^ (firstSquare notNil and: [ firstSquare hasPiece not ])
-		  ifTrue: [
-			  {
-				  firstSquare.
-				  secondSquare } ]
-		  ifFalse: [ { } ]
+	^ self isWhite
+		  ifTrue: [ self targetNotPieceForward: (square up) and: (square up up) ]
+		  ifFalse: [
+		  self targetNotPieceForward: (square down) and: (square down down) ]
 ]
 
 { #category : 'rendering' }
 MyPawn >> renderPieceOn: aSquare [ 
 	
 	^ aSquare renderPawn: self
+]
+
+{ #category : 'as yet unclassified' }
+MyPawn >> targetNotPieceForward: firstSquare and:secondSquare [
+
+	^ (firstSquare notNil and: [ firstSquare hasPiece not ])
+		  ifTrue: [
+			  {
+				  firstSquare.
+				  secondSquare } ]
+		  ifFalse: [ {  } ]
 ]
 
 { #category : 'rendering' }
