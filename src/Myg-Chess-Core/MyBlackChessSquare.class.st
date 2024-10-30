@@ -4,8 +4,9 @@ Class representing a black chessboard square
 Class {
 	#name : 'MyBlackChessSquare',
 	#superclass : 'MyChessSquare',
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'accessing' }

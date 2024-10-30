@@ -4,8 +4,9 @@ Class representing a chessboard king
 Class {
 	#name : 'MyKing',
 	#superclass : 'MyPiece',
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'as yet unclassified' }

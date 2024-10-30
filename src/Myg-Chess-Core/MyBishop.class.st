@@ -4,8 +4,9 @@ Class representing a chessboard bishop
 Class {
 	#name : 'MyBishop',
 	#superclass : 'MyPiece',
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'accessing' }
