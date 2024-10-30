@@ -1,3 +1,6 @@
+"
+Class representing a selected state
+"
 Class {
 	#name : 'MySelectedState',
 	#superclass : 'Object',

@@ -1,3 +1,6 @@
+"
+Class representing an unselected state
+"
 Class {
 	#name : 'MyUnselectedState',
 	#superclass : 'Object',

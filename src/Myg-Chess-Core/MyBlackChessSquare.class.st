@@ -1,3 +1,6 @@
+"
+Class representing a black chessboard square
+"
 Class {
 	#name : 'MyBlackChessSquare',
 	#superclass : 'MyChessSquare',

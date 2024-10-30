@@ -1,3 +1,6 @@
+"
+Class representing a chessboard rook
+"
 Class {
 	#name : 'MyRook',
 	#superclass : 'MyPiece',

@@ -1,3 +1,6 @@
+"
+Class representing a chessboard
+"
 Class {
 	#name : 'MyChessBoard',
 	#superclass : 'BlElement',

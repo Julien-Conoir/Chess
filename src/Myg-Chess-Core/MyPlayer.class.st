@@ -1,3 +1,6 @@
+"
+Class representing a chessboard player
+"
 Class {
 	#name : 'MyPlayer',
 	#superclass : 'Object',
