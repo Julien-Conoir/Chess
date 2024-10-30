@@ -21,9 +21,7 @@ Class {
 		'blackPlayer',
 		'moveCount',
 		'movesLabel',
-		'moveCountLabel',
-		'moves',
-		'dsp'
+		'moves'
 	],
 	#category : 'Myg-Chess-Core',
 	#package : 'Myg-Chess-Core'
