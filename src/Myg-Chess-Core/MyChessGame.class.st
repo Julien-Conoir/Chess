@@ -21,12 +21,11 @@ Class {
 		'blackPlayer',
 		'moveCount',
 		'movesLabel',
-		'moveCountLabel',
-		'moves',
-		'dsp'
+		'moves'
 	],
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'instance creation' }

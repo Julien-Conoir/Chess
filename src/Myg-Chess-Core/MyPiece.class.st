@@ -1,3 +1,6 @@
+"
+Class representing a chessboard piece
+"
 Class {
 	#name : 'MyPiece',
 	#superclass : 'Object',
@@ -5,8 +8,9 @@ Class {
 		'color',
 		'square'
 	],
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'constants' }
@@ -169,6 +173,11 @@ MyPiece >> moveTo: aSquare [
 	square emptyContents.
 	square := aSquare.
 	aSquare contents: self
+]
+
+{ #category : 'as yet unclassified' }
+MyPiece >> renderPieceOn: aSquare [ 
+	^ self subclassResponsibility
 ]
 
 { #category : 'rendering' }
