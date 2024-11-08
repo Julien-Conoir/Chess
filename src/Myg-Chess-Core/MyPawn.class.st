@@ -77,5 +77,5 @@ MyPawn >> targetSquaresLegal: aBoolean [
 	^ (self firstMove
 		   ifTrue: [ self previewOfTargetSquaresLegalFirstMove ]
 		   ifFalse: [ self previewOfTargetSquaresLegal ]) select: [ :s |
-		  s notNil & s hasPiece not]
+		  s notNil and: s hasPiece not]
 ]
