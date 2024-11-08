@@ -40,9 +40,9 @@ MyPawn >> moveTo: aSquare [
 { #category : 'as yet unclassified' }
 MyPawn >> previewOfTargetSquaresLegal [
 
-	^ (self isWhite
-		  ifTrue: [ {square up} ]
-		  ifFalse: [ {square down} ])
+	^ self isWhite
+		  ifTrue: [ { square up} ]
+		  ifFalse: [ { square down } ]
 ]
 
 { #category : 'as yet unclassified' }
@@ -75,7 +75,7 @@ MyPawn >> targetNotPieceForward: firstSquare and:secondSquare [
 MyPawn >> targetSquaresLegal: aBoolean [
 
 	^ (self firstMove
-				   ifTrue: [self previewOfTargetSquaresLegalFirstMove ]
-				   ifFalse: [self previewOfTargetSquaresLegal ] ) select: [ :s |
-		  s notNil and: [ s hasPiece not ] ]
+		   ifTrue: [ self previewOfTargetSquaresLegalFirstMove ]
+		   ifFalse: [ self previewOfTargetSquaresLegal ]) select: [ :s |
+		  s notNil & s hasPiece not]
 ]
