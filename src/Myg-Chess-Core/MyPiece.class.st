@@ -191,8 +191,9 @@ MyPiece >> myColor: aMyColor [
 	myColor := aMyColor
 ]
 
-{ #category : 'as yet unclassified' }
-MyPiece >> renderPieceOn: aSquare [ 
+{ #category : 'rendering' }
+MyPiece >> renderPieceOn: aSquare [
+
 	^ self subclassResponsibility
 ]
 
