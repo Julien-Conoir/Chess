@@ -122,8 +122,7 @@ MyPawnTest >> testWhitePawnDoesNotHavePermissionToMoveOverPieceWhenFirstMove [
 
 	| pawnWhite piece targetSquaresWhite board |
 	board := MyChessBoard empty.
-	pawnWhite := MyPawn new.
-	pawnWhite color: Color white.
+	pawnWhite := MyPawn white.
 	piece := MyRook new.
 	piece color: Color white.
 
@@ -132,7 +131,6 @@ MyPawnTest >> testWhitePawnDoesNotHavePermissionToMoveOverPieceWhenFirstMove [
 
 	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
 	self assert: targetSquaresWhite size equals: 0
-	
 ]
 
 { #category : 'tests' }
@@ -141,7 +139,7 @@ MyPawnTest >> testWhitePawnHas1ChoiceWhenFirstMoveAndPieceIsTwoSquaresForward [
 	| pawnWhite piece targetSquaresWhite board |
 	board := MyChessBoard empty.
 	pawnWhite := MyPawn new.
-	pawnWhite color: Color white.
+	pawnWhite white.
 	piece := MyRook new.
 	piece color: Color black.
 

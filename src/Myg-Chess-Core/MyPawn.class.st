@@ -2,11 +2,32 @@ Class {
 	#name : 'MyPawn',
 	#superclass : 'MyPiece',
 	#instVars : [
-		'firstMove'
+		'firstMove',
+		'moveStrategy'
+	],
+	#classInstVars : [
+		'moveStrategy'
 	],
 	#category : 'Myg-Chess-Core',
 	#package : 'Myg-Chess-Core'
 }
+
+{ #category : 'constants' }
+MyPawn class >> black [
+
+	^ super black initializeBlack
+]
+
+{ #category : 'accessing' }
+MyPawn class >> moveStrategy [ 
+	^ moveStrategy
+]
+
+{ #category : 'constants' }
+MyPawn class >> white [
+
+	^ super white initializeWhite
+]
 
 { #category : 'accessing' }
 MyPawn >> firstMove [
@@ -28,6 +49,29 @@ MyPawn >> id [
 MyPawn >> initialize [
 
 	firstMove := true
+]
+
+{ #category : 'initialize' }
+MyPawn >> initializeBlack [
+
+	firstMove := true.
+	moveStrategy := MyBlackPawnMoveStrategy new.
+   ^self.
+]
+
+{ #category : 'initialize' }
+MyPawn >> initializeWhite [
+
+	firstMove := true.
+	moveStrategy := MyWhitePawnMoveStrategy new.
+	moveStrategy chessMovesInstance: MyChessMoves new.
+	moveStrategy chessMovesInstance square: square.
+	^ self
+]
+
+{ #category : 'accessing' }
+MyPawn >> moveStrategy [ 
+	^ moveStrategy
 ]
 
 { #category : 'path commands' }
@@ -75,7 +119,7 @@ MyPawn >> targetNotPieceForward: firstSquare and:secondSquare [
 MyPawn >> targetSquaresLegal: aBoolean [
 
 	^ (self firstMove
-		   ifTrue: [ self previewOfTargetSquaresLegalFirstMove ]
-		   ifFalse: [ self previewOfTargetSquaresLegal ]) select: [ :s |
-		  s notNil & s hasPiece not ]
+		   ifTrue: [ moveStrategy firstMoveSquareLegals ]
+		   ifFalse: [ moveStrategy moveSquareLegals ]) select: [ :s |
+		  s notNil ]
 ]
