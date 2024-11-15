@@ -33,9 +33,9 @@ MyBlackChessSquareTest >> testNegatedColor [
 MyBlackChessSquareTest >> testRenderBishopOnBlackSquare [
 
 	| piece |
-	piece := MyBishop new color: Color black; yourself.
+	piece := MyBishop black.
 	self assert: (square renderBishop: piece) equals: 'v'.
-	piece color: Color white.
+	piece myColor: MyWhiteColor new.
 	self assert: (square renderBishop: piece) equals: 'b'.
 ]
 
@@ -43,9 +43,9 @@ MyBlackChessSquareTest >> testRenderBishopOnBlackSquare [
 MyBlackChessSquareTest >> testRenderKingOnBlackSquare [
 
 	| piece |
-	piece := MyKing new color: Color black; yourself.
+	piece := MyKing black.
 	self assert: (square renderKing: piece) equals: 'l'.
-	piece color: Color white.
+	piece myColor: MyWhiteColor new.
 	self assert: (square renderKing: piece) equals: 'k'.
 ]
 
@@ -53,9 +53,9 @@ MyBlackChessSquareTest >> testRenderKingOnBlackSquare [
 MyBlackChessSquareTest >> testRenderKnightOnBlackSquare [
 
 	| piece |
-	piece := MyKnight new color: Color black; yourself.
+	piece := MyKnight black.
 	self assert: (square renderKnight: piece) equals: 'm'.
-	piece color: Color white.
+	piece myColor: MyWhiteColor new.
 	self assert: (square renderKnight: piece) equals: 'n'.
 ]
 
@@ -63,9 +63,9 @@ MyBlackChessSquareTest >> testRenderKnightOnBlackSquare [
 MyBlackChessSquareTest >> testRenderPawnOnBlackSquare [
 
 	| piece |
-	piece := MyPawn new color: Color black; yourself.
+	piece := MyPawn black.
 	self assert: (square renderPawn: piece) equals: 'o'.
-	piece color: Color white.
+	piece myColor: MyWhiteColor new.
 	self assert: (square renderPawn: piece) equals: 'p'.
 ]
 
@@ -73,9 +73,9 @@ MyBlackChessSquareTest >> testRenderPawnOnBlackSquare [
 MyBlackChessSquareTest >> testRenderQueenOnBlackSquare [
 
 	| piece |
-	piece := MyQueen new color: Color black; yourself.
+	piece := MyQueen black.
 	self assert: (square renderQueen: piece) equals: 'w'.
-	piece color: Color white.
+	piece myColor: MyWhiteColor new.
 	self assert: (square renderQueen: piece) equals: 'q'.
 ]
 
@@ -83,9 +83,9 @@ MyBlackChessSquareTest >> testRenderQueenOnBlackSquare [
 MyBlackChessSquareTest >> testRenderRookOnBlackSquare [
 
 	| piece |
-	piece := MyRook new color: Color black; yourself.
+	piece := MyRook black.
 	self assert: (square renderRook: piece) equals: 't'.
-	piece color: Color white.
+	piece myColor: MyWhiteColor new.
 	self assert: (square renderRook: piece) equals: 'r'.
 ]
 

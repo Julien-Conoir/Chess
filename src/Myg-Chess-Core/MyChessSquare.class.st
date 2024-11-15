@@ -172,35 +172,107 @@ MyChessSquare >> printOn: aStream [
 { #category : 'rendering' }
 MyChessSquare >> renderBishop: aPiece [
 
-		self subclassResponsibility
+	^ aPiece myColor renderBishop: self
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderBlackBishop [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderBlackKing [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderBlackKnight [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderBlackPawn [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderBlackQueen [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderBlackRook [
+
+	self subclassResponsibility
 ]
 
 { #category : 'rendering' }
 MyChessSquare >> renderKing: aPiece [
 
-	self subclassResponsibility
+	^ aPiece myColor renderKing: self
 ]
 
 { #category : 'rendering' }
 MyChessSquare >> renderKnight: aPiece [
 
-	self subclassResponsibility
+	^ aPiece myColor renderKnight: self
 ]
 
 { #category : 'rendering' }
 MyChessSquare >> renderPawn: aPiece [
 
-	self subclassResponsibility
+	^ aPiece myColor renderPawn: self
 ]
 
 { #category : 'rendering' }
 MyChessSquare >> renderQueen: aPiece [
 
-	self subclassResponsibility
+	^ aPiece myColor renderQueen: self
 ]
 
 { #category : 'rendering' }
 MyChessSquare >> renderRook: aPiece [
+
+	^ aPiece myColor renderRook: self
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderWhiteBishop [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderWhiteKing [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderWhiteKnight [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderWhitePawn [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderWhiteQueen [
+
+	self subclassResponsibility
+]
+
+{ #category : 'rendering' }
+MyChessSquare >> renderWhiteRook [
 
 	self subclassResponsibility
 ]

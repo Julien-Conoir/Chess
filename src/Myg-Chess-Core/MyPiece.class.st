@@ -6,7 +6,8 @@ Class {
 	#superclass : 'Object',
 	#instVars : [
 		'color',
-		'square'
+		'square',
+		'myColor'
 	],
 	#category : 'Myg-Chess-Core-Chess',
 	#package : 'Myg-Chess-Core',
@@ -17,16 +18,19 @@ Class {
 MyPiece class >> black [
 
 	^ self new
-		  color: Color black;
-		  yourself
+		color: Color black;
+		myColor: MyBlackColor new;
+		yourself
 ]
 
 { #category : 'constants' }
 MyPiece class >> white [
 
 	^ self new
-		  color: Color white;
-		  yourself
+		color: Color white;
+		myColor: MyWhiteColor new;
+		yourself
+	
 ]
 
 { #category : 'as yet unclassified' }
@@ -173,6 +177,18 @@ MyPiece >> moveTo: aSquare [
 	square emptyContents.
 	square := aSquare.
 	aSquare contents: self
+]
+
+{ #category : 'accessing' }
+MyPiece >> myColor [
+
+	^ myColor
+]
+
+{ #category : 'accessing' }
+MyPiece >> myColor: aMyColor [
+
+	myColor := aMyColor
 ]
 
 { #category : 'as yet unclassified' }
