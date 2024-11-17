@@ -5,7 +5,6 @@ Class {
 	#name : 'MyPiece',
 	#superclass : 'Object',
 	#instVars : [
-		'color',
 		'square',
 		'myColor'
 	],
@@ -18,7 +17,6 @@ Class {
 MyPiece class >> black [
 
 	^ self new
-		color: Color black;
 		myColor: MyBlackColor new;
 		yourself
 ]
@@ -27,7 +25,6 @@ MyPiece class >> black [
 MyPiece class >> white [
 
 	^ self new
-		color: Color white;
 		myColor: MyWhiteColor new;
 		yourself
 	
@@ -70,21 +67,9 @@ MyPiece >> collectSquares: collectBlock while: untilBlock [
 		whileTrue: [ targets add: next ].
 
 	"If we can it the next piece, then add it too"
-	(next notNil and: [ next contents color ~= color ]) ifTrue: [ targets add: next ].
+	(next notNil and: [ next contents myColor class ~= myColor class ]) ifTrue: [ targets add: next ].
 
 	^ targets
-]
-
-{ #category : 'accessing' }
-MyPiece >> color [
-
-	^ color
-]
-
-{ #category : 'accessing' }
-MyPiece >> color: aColor [
-
-	color := aColor
 ]
 
 { #category : 'rendering' }
@@ -148,7 +133,7 @@ MyPiece >> isPiece [
 { #category : 'testing' }
 MyPiece >> isWhite [
 	
-	^ color isBlack not
+	^ myColor class = MyWhiteColor
 ]
 
 { #category : 'rendering' }

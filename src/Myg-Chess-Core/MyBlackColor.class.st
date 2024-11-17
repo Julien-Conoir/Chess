@@ -9,6 +9,12 @@ Class {
 	#tag : 'Chess'
 }
 
+{ #category : 'arithmetic' }
+MyBlackColor >> negated [
+
+	^ MyWhiteColor
+]
+
 { #category : 'rendering' }
 MyBlackColor >> renderBishop: aSquare [
 

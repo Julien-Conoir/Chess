@@ -5,8 +5,8 @@ Class {
 	#name : 'MyPlayer',
 	#superclass : 'Object',
 	#instVars : [
-		'color',
-		'game'
+		'game',
+		'myColor'
 	],
 	#category : 'Myg-Chess-Core-Chess',
 	#package : 'Myg-Chess-Core',
@@ -16,19 +16,7 @@ Class {
 { #category : 'constants' }
 MyPlayer >> black [
 
-	self color: Color black
-]
-
-{ #category : 'accessing' }
-MyPlayer >> color [
-
-	^ color
-]
-
-{ #category : 'accessing' }
-MyPlayer >> color: anObject [
-
-	color := anObject
+	self myColor: MyBlackColor new
 ]
 
 { #category : 'accessing' }
@@ -46,7 +34,7 @@ MyPlayer >> game: anObject [
 { #category : 'testing' }
 MyPlayer >> isWhite [
 	
-	^ color = Color white
+	^ myColor class = MyWhiteColor
 ]
 
 { #category : 'accessing' }
@@ -56,9 +44,21 @@ MyPlayer >> king [
 ]
 
 { #category : 'accessing' }
+MyPlayer >> myColor [
+
+	^ myColor
+]
+
+{ #category : 'constants' }
+MyPlayer >> myColor: aMyColor [
+
+	myColor := aMyColor
+]
+
+{ #category : 'accessing' }
 MyPlayer >> pieces [
 
-	^ game pieces select: [ :p | p notNil and: [ p color = self color ] ]
+	^ game pieces select: [ :p | p notNil and: [ p myColor class = self myColor class ] ]
 ]
 
 { #category : 'playing' }
@@ -85,5 +85,5 @@ MyPlayer >> play [
 { #category : 'constants' }
 MyPlayer >> white [
 
-	self color: Color white
+	self myColor: MyWhiteColor new
 ]
