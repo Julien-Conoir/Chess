@@ -16,6 +16,23 @@ MyWhitePawnMoveStrategy >> firstMoveSquareLegals [
 ]
 
 { #category : 'rendering' }
+MyWhitePawnMoveStrategy >> firstMoveSquareLegals: aSquare [
+
+	| possibleMoves possibleAttacks | 
+	self chessMovesInstance square: aSquare.
+	possibleMoves := aSquare up hasPiece 
+		ifTrue: [#()] 
+		ifFalse: [{ 
+			self chessMovesInstance doubleUp. 
+			self chessMovesInstance up }].
+	possibleAttacks := {
+		                   self chessMovesInstance singleDiagonalUpRight.
+		                   self chessMovesInstance singleDiagonalUpLeft }.
+	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
+		  (possibleAttacks select: [ :attack | attack hasPiece ])
+]
+
+{ #category : 'rendering' }
 MyWhitePawnMoveStrategy >> moveSquareLegals [
 
 	|possibleMoves possibleAttacks |
@@ -23,4 +40,17 @@ MyWhitePawnMoveStrategy >> moveSquareLegals [
 	possibleAttacks := { self chessMovesInstance singleDiagonalUpRight. self chessMovesInstance singleDiagonalUpLeft }.
 	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
 
+]
+
+{ #category : 'rendering' }
+MyWhitePawnMoveStrategy >> moveSquareLegals: aSquare [
+
+	| possibleMoves possibleAttacks |
+	self chessMovesInstance square: aSquare.
+	possibleMoves := { self chessMovesInstance up }.
+	possibleAttacks := {
+		                   self chessMovesInstance singleDiagonalUpRight.
+		                   self chessMovesInstance singleDiagonalUpLeft }.
+	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
+		  (possibleAttacks select: [ :attack | attack hasPiece ])
 ]

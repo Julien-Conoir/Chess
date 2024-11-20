@@ -25,8 +25,20 @@ MyMoveStrategy >> firstMoveSquareLegals [
 	self subclassResponsibility 
 ]
 
+{ #category : 'rendering' }
+MyMoveStrategy >> firstMoveSquareLegals: aSquare [
+
+	self subclassResponsibility
+]
+
 { #category : 'as yet unclassified' }
 MyMoveStrategy >> moveSquareLegals [
+
+	self subclassResponsibility
+]
+
+{ #category : 'as yet unclassified' }
+MyMoveStrategy >> moveSquareLegals: aSquare [
 
 	self subclassResponsibility
 ]

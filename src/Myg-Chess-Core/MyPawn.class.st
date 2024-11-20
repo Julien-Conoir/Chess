@@ -54,9 +54,10 @@ MyPawn >> initialize [
 { #category : 'initialize' }
 MyPawn >> initializeBlack [
 
-	firstMove := true.
 	moveStrategy := MyBlackPawnMoveStrategy new.
-   ^self.
+	moveStrategy chessMovesInstance: MyChessMoves new.
+	moveStrategy chessMovesInstance square: square.
+	^ self
 ]
 
 { #category : 'initialize' }
@@ -119,7 +120,7 @@ MyPawn >> targetNotPieceForward: firstSquare and:secondSquare [
 MyPawn >> targetSquaresLegal: aBoolean [
 
 	^ (self firstMove
-		   ifTrue: [ moveStrategy firstMoveSquareLegals ]
-		   ifFalse: [ moveStrategy moveSquareLegals ]) select: [ :s |
+		   ifTrue: [ moveStrategy firstMoveSquareLegals: self square ]
+		   ifFalse: [ moveStrategy moveSquareLegals: self square ]) select: [ :s |
 		  s notNil ]
 ]
