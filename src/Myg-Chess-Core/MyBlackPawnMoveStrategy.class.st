@@ -6,16 +6,6 @@ Class {
 }
 
 { #category : 'rendering' }
-MyBlackPawnMoveStrategy >> firstMoveSquareLegals [
-
-	|possibleMoves possibleAttacks |
-	possibleMoves := {self chessMovesInstance doubleDown . self chessMovesInstance down}.
-	possibleAttacks := { self chessMovesInstance singleDiagonalDownRight. self chessMovesInstance singleDiagonalDownLeft }.
-	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
-
-]
-
-{ #category : 'rendering' }
 MyBlackPawnMoveStrategy >> firstMoveSquareLegals: aSquare [
 
 	| possibleMoves possibleAttacks |
@@ -29,18 +19,10 @@ MyBlackPawnMoveStrategy >> firstMoveSquareLegals: aSquare [
 	possibleAttacks := {
 		                   self chessMovesInstance singleDiagonalDownRight.
 		                   self chessMovesInstance singleDiagonalDownLeft }.
-	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
-		  (possibleAttacks select: [ :attack | attack hasPiece ])
-]
-
-{ #category : 'rendering' }
-MyBlackPawnMoveStrategy >> moveSquareLegals [
-
-	|possibleMoves possibleAttacks |
-	possibleMoves := {self chessMovesInstance down}.
-	possibleAttacks := { self chessMovesInstance singleDiagonalDownRight. self chessMovesInstance singleDiagonalDownLeft }.
-	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
-
+	^ (possibleMoves select: [ :move |
+		   move isNotNil and: [ move hasPiece not ] ]) union:
+		  (possibleAttacks select: [ :attack |
+			   attack isNotNil and: [ attack hasPiece ] ])
 ]
 
 { #category : 'rendering' }
@@ -52,6 +34,8 @@ MyBlackPawnMoveStrategy >> moveSquareLegals: aSquare [
 	possibleAttacks := {
 		                   self chessMovesInstance singleDiagonalDownRight.
 		                   self chessMovesInstance singleDiagonalDownLeft }.
-	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
-		  (possibleAttacks select: [ :attack | attack hasPiece ])
+	^ (possibleMoves select: [ :move |
+		   move isNotNil and: [ move hasPiece not ] ]) union:
+		  (possibleAttacks select: [ :attack |
+			   attack isNotNil and: [ attack hasPiece ] ])
 ]

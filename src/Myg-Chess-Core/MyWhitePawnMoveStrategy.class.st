@@ -6,40 +6,23 @@ Class {
 }
 
 { #category : 'rendering' }
-MyWhitePawnMoveStrategy >> firstMoveSquareLegals [
-
-	|possibleMoves possibleAttacks |
-	possibleMoves := {self chessMovesInstance doubleUp . self chessMovesInstance up}.
-	possibleAttacks := { self chessMovesInstance singleDiagonalUpRight. self chessMovesInstance singleDiagonalUpLeft }.
-	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
-
-]
-
-{ #category : 'rendering' }
 MyWhitePawnMoveStrategy >> firstMoveSquareLegals: aSquare [
 
-	| possibleMoves possibleAttacks | 
+	| possibleMoves possibleAttacks |
 	self chessMovesInstance square: aSquare.
-	possibleMoves := aSquare up hasPiece 
-		ifTrue: [#()] 
-		ifFalse: [{ 
-			self chessMovesInstance doubleUp. 
-			self chessMovesInstance up }].
+	possibleMoves := aSquare up hasPiece
+		                 ifTrue: [ #(  ) ]
+		                 ifFalse: [
+			                 {
+				                 self chessMovesInstance doubleUp.
+				                 self chessMovesInstance up } ].
 	possibleAttacks := {
 		                   self chessMovesInstance singleDiagonalUpRight.
 		                   self chessMovesInstance singleDiagonalUpLeft }.
-	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
-		  (possibleAttacks select: [ :attack | attack hasPiece ])
-]
-
-{ #category : 'rendering' }
-MyWhitePawnMoveStrategy >> moveSquareLegals [
-
-	|possibleMoves possibleAttacks |
-	possibleMoves := {self chessMovesInstance up}.
-	possibleAttacks := { self chessMovesInstance singleDiagonalUpRight. self chessMovesInstance singleDiagonalUpLeft }.
-	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
-
+	^ (possibleMoves select: [ :move |
+		   move isNotNil and: [ move hasPiece not ] ]) union:
+		  (possibleAttacks select: [ :attack |
+			   attack isNotNil and: [ attack hasPiece ] ])
 ]
 
 { #category : 'rendering' }
@@ -51,6 +34,8 @@ MyWhitePawnMoveStrategy >> moveSquareLegals: aSquare [
 	possibleAttacks := {
 		                   self chessMovesInstance singleDiagonalUpRight.
 		                   self chessMovesInstance singleDiagonalUpLeft }.
-	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
-		  (possibleAttacks select: [ :attack | attack hasPiece ])
+	^ (possibleMoves select: [ :move |
+		   move isNotNil and: [ move hasPiece not ] ]) union:
+		  (possibleAttacks select: [ :attack |
+			   attack isNotNil and: [ attack hasPiece ] ])
 ]

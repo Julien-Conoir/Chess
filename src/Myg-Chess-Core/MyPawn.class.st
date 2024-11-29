@@ -63,7 +63,6 @@ MyPawn >> initializeBlack [
 { #category : 'initialize' }
 MyPawn >> initializeWhite [
 
-	firstMove := true.
 	moveStrategy := MyWhitePawnMoveStrategy new.
 	moveStrategy chessMovesInstance: MyChessMoves new.
 	moveStrategy chessMovesInstance square: square.
