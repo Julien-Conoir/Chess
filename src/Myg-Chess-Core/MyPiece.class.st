@@ -1,28 +1,33 @@
+"
+Class representing a chessboard piece
+"
 Class {
 	#name : 'MyPiece',
 	#superclass : 'Object',
 	#instVars : [
-		'color',
-		'square'
+		'square',
+		'myColor'
 	],
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'constants' }
 MyPiece class >> black [
 
 	^ self new
-		  color: Color black;
-		  yourself
+		myColor: MyBlackColor new;
+		yourself
 ]
 
 { #category : 'constants' }
 MyPiece class >> white [
 
 	^ self new
-		  color: Color white;
-		  yourself
+		myColor: MyWhiteColor new;
+		yourself
+	
 ]
 
 { #category : 'as yet unclassified' }
@@ -62,21 +67,9 @@ MyPiece >> collectSquares: collectBlock while: untilBlock [
 		whileTrue: [ targets add: next ].
 
 	"If we can it the next piece, then add it too"
-	(next notNil and: [ next contents color ~= color ]) ifTrue: [ targets add: next ].
+	(next notNil and: [ next contents myColor class ~= myColor class ]) ifTrue: [ targets add: next ].
 
 	^ targets
-]
-
-{ #category : 'accessing' }
-MyPiece >> color [
-
-	^ color
-]
-
-{ #category : 'accessing' }
-MyPiece >> color: aColor [
-
-	color := aColor
 ]
 
 { #category : 'rendering' }
@@ -140,7 +133,7 @@ MyPiece >> isPiece [
 { #category : 'testing' }
 MyPiece >> isWhite [
 	
-	^ color isBlack not
+	^ myColor class = MyWhiteColor
 ]
 
 { #category : 'rendering' }
@@ -169,6 +162,24 @@ MyPiece >> moveTo: aSquare [
 	square emptyContents.
 	square := aSquare.
 	aSquare contents: self
+]
+
+{ #category : 'accessing' }
+MyPiece >> myColor [
+
+	^ myColor
+]
+
+{ #category : 'accessing' }
+MyPiece >> myColor: aMyColor [
+
+	myColor := aMyColor
+]
+
+{ #category : 'rendering' }
+MyPiece >> renderPieceOn: aSquare [
+
+	^ self subclassResponsibility
 ]
 
 { #category : 'rendering' }

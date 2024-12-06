@@ -1,8 +1,12 @@
+"
+Class representing a chessboard king
+"
 Class {
 	#name : 'MyKing',
 	#superclass : 'MyPiece',
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'as yet unclassified' }
@@ -66,7 +70,7 @@ MyKing >> isKing [
 MyKing >> opponentPieces [
 
 	^ self board pieces select: [ :e |
-		  e notNil and: [ e color = color negated ] ]
+		  e notNil and: [ e myColor class = myColor negated ] ]
 ]
 
 { #category : 'rendering' }
@@ -88,7 +92,7 @@ MyKing >> targetSquaresLegal: aBoolean [
 			  (threatenedSquares includes: s) not and: [
 				  s hasPiece not or: [ 
 					"The square has an opponent piece"
-					s contents color ~= color and: [ 
+					s contents myColor class ~= myColor class and: [ 
 						"Let's hope the piece is not defended"
 						threatenedSquares includes: s  ] ] ] ] ]
 ]

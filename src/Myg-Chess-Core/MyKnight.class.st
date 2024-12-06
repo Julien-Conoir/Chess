@@ -1,8 +1,12 @@
+"
+Class representing a chessboard knight
+"
 Class {
 	#name : 'MyKnight',
 	#superclass : 'MyPiece',
-	#category : 'Myg-Chess-Core',
-	#package : 'Myg-Chess-Core'
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 }
 
 { #category : 'accessing' }
@@ -30,5 +34,5 @@ MyKnight >> targetSquaresLegal: aBoolean [
 		  (square down ifNotNil: [ :p | p down ifNotNil: #left ]).
 		  (square down ifNotNil: [ :p | p down ifNotNil: #right ]) }
 		  select: [ :s |
-			  s notNil and: [ s hasPiece not or: [ s contents color ~= color ] ] ]
+			  s notNil and: [ s hasPiece not or: [ s contents myColor class ~= myColor class ] ] ]
 ]

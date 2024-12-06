@@ -1,6 +1,12 @@
+"
+Class representing a chessboard pawn
+"
 Class {
 	#name : 'MyPawn',
 	#superclass : 'MyPiece',
+	#category : 'Myg-Chess-Core-Chess',
+	#package : 'Myg-Chess-Core',
+	#tag : 'Chess'
 	#instVars : [
 		'firstMove',
 		'moveStrategy'
@@ -27,16 +33,6 @@ MyPawn class >> moveStrategy [
 MyPawn class >> white [
 
 	^ super white initializeWhite
-]
-
-{ #category : 'accessing' }
-MyPawn >> firstMove [
-	^ firstMove 
-]
-
-{ #category : 'accessing' }
-MyPawn >> firstMove: aBoolean [
-	firstMove := aBoolean 
 ]
 
 { #category : 'accessing' }
