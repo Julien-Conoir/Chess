@@ -22,7 +22,8 @@ MyBlackPawnMoveStrategy >> firstMoveSquareLegals: aSquare [
 	^ (possibleMoves select: [ :move |
 		   move isNotNil and: [ move hasPiece not ] ]) union:
 		  (possibleAttacks select: [ :attack |
-			   attack isNotNil and: [ attack hasPiece ] ])
+			   attack isNotNil and: [
+				   attack hasPiece and: [attack contents isWhite] ] ])
 ]
 
 { #category : 'rendering' }
@@ -37,5 +38,6 @@ MyBlackPawnMoveStrategy >> moveSquareLegals: aSquare [
 	^ (possibleMoves select: [ :move |
 		   move isNotNil and: [ move hasPiece not ] ]) union:
 		  (possibleAttacks select: [ :attack |
-			   attack isNotNil and: [ attack hasPiece ] ])
+			   attack isNotNil and: [
+				   attack hasPiece and: [attack contents isWhite] ] ])
 ]

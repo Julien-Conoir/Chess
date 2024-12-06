@@ -14,12 +14,12 @@ MyPawnTest >> testBlackPawnCannotAttackBlackPiece [
 	piece := MyRook new.
 	piece color: Color black.
 
-	board at: 'd7' put: pawnBlack .
+	board at: 'd7' put: pawnBlack.
 	board at: 'c6' put: piece.
 
 	targetSquaresWhite := pawnBlack targetSquaresLegal: false.
 	self assert: targetSquaresWhite size equals: 2.
-	self assert: (targetSquaresWhite includes: (board at: 'c6') not)
+	self assert: (targetSquaresWhite includes: (board at: 'c6')) not
 ]
 
 { #category : 'tests' }
@@ -170,14 +170,15 @@ MyPawnTest >> testWhitePawnCannotAttackWhitePiece [
 	board := MyChessBoard empty.
 	pawnWhite := MyPawn white.
 	piece := MyRook new.
-	piece color: Color black.
+	piece color: Color white.
 
 	board at: 'c2' put: pawnWhite.
 	board at: 'b3' put: piece.
 
 	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
 	self assert: targetSquaresWhite size equals: 2.
-	self assert: (targetSquaresWhite includes: (board at: 'b3') not)
+	self assert: (targetSquaresWhite includes: (board at: 'b3')) not
+
 ]
 
 { #category : 'tests' }
