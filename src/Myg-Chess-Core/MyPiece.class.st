@@ -168,7 +168,10 @@ MyPiece >> moveTo: aSquare [
 
 	square emptyContents.
 	square := aSquare.
-	aSquare contents: self
+	self board lastMoveFrom: self square.
+	aSquare contents: self.
+	self board lastMoveTo: aSquare.
+	self board lastPieceMove: self
 ]
 
 { #category : 'rendering' }

@@ -8,7 +8,10 @@ Class {
 		'state',
 		'whiteColor',
 		'blackColor',
-		'game'
+		'game',
+		'lastPieceMove',
+		'lastMoveTo',
+		'lastMoveFrom'
 	],
 	#category : 'Myg-Chess-Core',
 	#package : 'Myg-Chess-Core'
@@ -215,6 +218,39 @@ MyChessBoard >> initializeSquares [
 			grid at: squareNotation put: square.
 			self addChild: square ].
 		black := black not ]
+]
+
+{ #category : 'accessing' }
+MyChessBoard >> lastMoveFrom [
+^lastMoveFrom 
+]
+
+{ #category : 'accessing' }
+MyChessBoard >> lastMoveFrom: aSquare [
+
+	lastMoveFrom := aSquare
+]
+
+{ #category : 'accessing' }
+MyChessBoard >> lastMoveTo [
+	^lastMoveTo 
+]
+
+{ #category : 'accessing' }
+MyChessBoard >> lastMoveTo: aSquare [
+
+	lastMoveTo := aSquare 
+]
+
+{ #category : 'accessing' }
+MyChessBoard >> lastPieceMove [
+^lastPieceMove 
+]
+
+{ #category : 'accessing' }
+MyChessBoard >> lastPieceMove: aPiece [
+
+	lastPieceMove := aPiece 
 ]
 
 { #category : 'accessing' }

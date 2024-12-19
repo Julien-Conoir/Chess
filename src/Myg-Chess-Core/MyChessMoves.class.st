@@ -26,6 +26,18 @@ MyChessMoves >> down [
 	^ square down ifNil: [ square ]
 ]
 
+{ #category : 'accessing' }
+MyChessMoves >> left [
+
+	^ square left ifNil: [ square ]
+]
+
+{ #category : 'accessing' }
+MyChessMoves >> right [
+
+	^ square right ifNil: [ square ]
+]
+
 { #category : 'rendering' }
 MyChessMoves >> singleDiagonalDownLeft [
 
