@@ -6,6 +6,23 @@ Class {
 }
 
 { #category : 'tests' }
+MyPawnTest >> testBlackPawnCannotAttackBlackPiece [
+
+	| pawnBlack piece targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnBlack := MyPawn black.
+	piece := MyRook new.
+	piece color: Color black.
+
+	board at: 'd7' put: pawnBlack.
+	board at: 'c6' put: piece.
+
+	targetSquaresWhite := pawnBlack targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 2.
+	self assert: (targetSquaresWhite includes: (board at: 'c6')) not
+]
+
+{ #category : 'tests' }
 MyPawnTest >> testBlackPawnDoesNotHavePermissionToMoveOverPieceWhenFirstMove [
 
 	| pawnBlack piece targetSquaresBlack board |
@@ -110,6 +127,58 @@ MyPawnTest >> testPawnId [
 	| pawn |
 	pawn := MyPawn new.
 	self assert: pawn id equals: 'P'
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testSimpleAttackOnBlackPawn [
+
+	| pawnBlack piece targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnBlack := MyPawn black.
+	piece := MyRook new.
+	piece color: Color white.
+
+	board at: 'd7' put: pawnBlack .
+	board at: 'c6' put: piece.
+
+	targetSquaresWhite := pawnBlack targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 3.
+	self assert: (targetSquaresWhite includes: (board at: 'c6'))
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testSimpleAttackOnWhitePawn [
+
+	| pawnWhite piece targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnWhite := MyPawn white.
+	piece := MyRook new.
+	piece color: Color black.
+
+	board at: 'c2' put: pawnWhite.
+	board at: 'd3' put: piece.
+
+	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 3.
+	self assert: (targetSquaresWhite includes: (board at:'d3'))
+]
+
+{ #category : 'tests' }
+MyPawnTest >> testWhitePawnCannotAttackWhitePiece [
+
+	| pawnWhite piece targetSquaresWhite board |
+	board := MyChessBoard empty.
+	pawnWhite := MyPawn white.
+	piece := MyRook new.
+	piece color: Color white.
+
+	board at: 'c2' put: pawnWhite.
+	board at: 'b3' put: piece.
+
+	targetSquaresWhite := pawnWhite targetSquaresLegal: false.
+	self assert: targetSquaresWhite size equals: 2.
+	self assert: (targetSquaresWhite includes: (board at: 'b3')) not
+
 ]
 
 { #category : 'tests' }

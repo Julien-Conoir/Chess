@@ -5,14 +5,28 @@ Class {
 	#package : 'Myg-Chess-Core'
 }
 
-{ #category : 'rendering' }
-MyBlackPawnMoveStrategy >> firstMoveSquareLegals [
+{ #category : 'as yet unclassified' }
+MyBlackPawnMoveStrategy >> enPassantSquareLegals [
 
-	|possibleMoves possibleAttacks |
-	possibleMoves := {self chessMovesInstance doubleDown . self chessMovesInstance down}.
-	possibleAttacks := { self chessMovesInstance singleDiagonalDownRight. self chessMovesInstance singleDiagonalDownLeft }.
-	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
+	| enPassantAttack |
+	enPassantAttack := OrderedCollection new.
+	self isOnFifthRow ifTrue: [
+		self chessMovesInstance right hasPiece ifTrue: [
+			enPassantAttack add: self chessMovesInstance downRightDiagonal ].
+		self chessMovesInstance left hasPiece ifTrue: [
+			enPassantAttack add: self chessMovesInstance downLeftDiagonal ] ].
+	^ enPassantAttack
+]
 
+{ #category : 'accessing' }
+MyBlackPawnMoveStrategy >> firstMovePossibleSquares: aSquare [
+
+	^ (aSquare down hasPiece
+		ifTrue: [ #(  ) ]
+		ifFalse: [
+			{
+				self chessMovesInstance doubleDown.
+				self chessMovesInstance down } ])
 ]
 
 { #category : 'rendering' }
@@ -20,38 +34,40 @@ MyBlackPawnMoveStrategy >> firstMoveSquareLegals: aSquare [
 
 	| possibleMoves possibleAttacks |
 	self chessMovesInstance square: aSquare.
-	possibleMoves := aSquare down hasPiece
-		                 ifTrue: [ #(  ) ]
-		                 ifFalse: [
-			                 {
-				                 self chessMovesInstance doubleDown.
-				                 self chessMovesInstance down } ].
-	possibleAttacks := {
-		                   self chessMovesInstance singleDiagonalDownRight.
-		                   self chessMovesInstance singleDiagonalDownLeft }.
-	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
-		  (possibleAttacks select: [ :attack | attack hasPiece ])
+	possibleMoves := self firstMovePossibleSquares: aSquare.
+	possibleAttacks := self movePossibleAttacks.
+	^ (possibleMoves select: [ :move |
+		   move isNotNil and: [ move hasPiece not ] ]) union:
+		  (possibleAttacks select: [ :attack |
+			   attack isNotNil and: [
+				   attack hasPiece and: [ attack contents isWhite ] ] ])
 ]
 
-{ #category : 'rendering' }
-MyBlackPawnMoveStrategy >> moveSquareLegals [
+{ #category : 'testing' }
+MyBlackPawnMoveStrategy >> isOnFifthRow [
 
-	|possibleMoves possibleAttacks |
-	possibleMoves := {self chessMovesInstance down}.
-	possibleAttacks := { self chessMovesInstance singleDiagonalDownRight. self chessMovesInstance singleDiagonalDownLeft }.
-	^ ((possibleMoves select: [ :move | move hasPiece not]) union: (possibleAttacks select: [ :attack | attack hasPiece]) )
+	^ ((self chessMovesInstance square name) asInteger = 4)
+]
 
+{ #category : 'as yet unclassified' }
+MyBlackPawnMoveStrategy >> movePossibleAttacks [
+
+	^ {
+		  self chessMovesInstance singleDiagonalDownRight.
+		  self chessMovesInstance singleDiagonalDownLeft }
 ]
 
 { #category : 'rendering' }
 MyBlackPawnMoveStrategy >> moveSquareLegals: aSquare [
 
-	| possibleMoves possibleAttacks |
+	| possibleMoves possibleAttacks legalMoves |
+	legalMoves := OrderedCollection new.
 	self chessMovesInstance square: aSquare.
 	possibleMoves := { self chessMovesInstance down }.
-	possibleAttacks := {
-		                   self chessMovesInstance singleDiagonalDownRight.
-		                   self chessMovesInstance singleDiagonalDownLeft }.
-	^ (possibleMoves select: [ :move | move hasPiece not ]) union:
-		  (possibleAttacks select: [ :attack | attack hasPiece ])
+	possibleAttacks := self movePossibleAttacks.
+	^ (possibleMoves select: [ :move |
+		   move isNotNil and: [ move hasPiece not ] ]) union:
+		  (possibleAttacks select: [ :attack |
+			   attack isNotNil and: [
+				   attack hasPiece and: [ attack contents isWhite ] ] ])
 ]
