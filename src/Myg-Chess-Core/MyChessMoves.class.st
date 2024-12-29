@@ -10,43 +10,58 @@ Class {
 
 { #category : 'rendering' }
 MyChessMoves >> doubleDown [
-	^square down down
 
+	^ square down down ifNil: [ square ]
 ]
 
 { #category : 'rendering' }
 MyChessMoves >> doubleUp [
-	^ square up up
 
+	^ square up up ifNil: [ square ]
 ]
 
 { #category : 'rendering' }
 MyChessMoves >> down [
-	^ square down
 
+	^ square down ifNil: [ square ]
+]
+
+{ #category : 'accessing' }
+MyChessMoves >> left [
+
+	^ square left ifNil: [ square ]
+]
+
+{ #category : 'accessing' }
+MyChessMoves >> right [
+
+	^ square right ifNil: [ square ]
 ]
 
 { #category : 'rendering' }
 MyChessMoves >> singleDiagonalDownLeft [
-	^ square down left
+
+    ^ square down ifNotNil: [ :downSquare | downSquare left ].
 
 ]
 
 { #category : 'rendering' }
 MyChessMoves >> singleDiagonalDownRight [
-	^ square down right
+
+    ^ square down ifNotNil: [ :downSquare | downSquare right ].
 
 ]
 
 { #category : 'rendering' }
 MyChessMoves >> singleDiagonalUpLeft [
-	^ square up left
+
+	    ^ square up ifNotNil: [ :upSquare | upSquare left ].
 ]
 
 { #category : 'rendering' }
 MyChessMoves >> singleDiagonalUpRight [
-	^ square up right
 
+	    ^ square up ifNotNil: [ :upSquare | upSquare right ].
 ]
 
 { #category : 'accessing' }
@@ -65,6 +80,6 @@ MyChessMoves >> square: aMyChessSquare [
 
 { #category : 'rendering' }
 MyChessMoves >> up [
-	^ square up
 
+	^ square up ifNil: [ square ]
 ]
